@@ -1,0 +1,27 @@
+{
+    "name": "robert/communique-interceptor-json",
+    "description": "A JSON interceptor for the communique REST client. JSON encodes the request payload, JSON decodes the response payload.",
+    "type": "library",
+    "keywords": ["rest", "api", "oauth", "curl", "web", "services", "communique"],
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Robert Main",
+            "homepage": "http://github.com/robertmain",
+            "role": "Owner"
+        }
+    ],
+    "autoload":{
+        "psr-4": {
+            "Communique\\Interceptors\\": ["src"]
+        }
+    },
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpdocumentor/phpdocumentor": "^2.8",
+        "phpunit/phpunit": "^4.8"
+    },
+    "require": {
+        "robertmain/communique": "^0.0.1"
+    }
+}
