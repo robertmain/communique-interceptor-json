@@ -45,4 +45,10 @@ class JSONTest extends PHPUnit_Framework_TestCase{
     	$processed_response = $this->JSON->response($response);
     	PHPUnit_Framework_TestCase::assertEquals(array('response' => 'payload'), $processed_response->payload);
     }
+
+    public function test_error_state_mismatch_response(){    	
+    	PHPUnit_Framework_TestCase::setExpectedException('\Communique\Interceptors\JSON\JSONParseException', 'Invalid or malformed JSON');
+    	$response = new \Communique\RESTClientResponse(200, 'this is not json');
+    	$this->JSON->response($response);
+    }
 }
