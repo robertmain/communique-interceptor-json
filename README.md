@@ -1,5 +1,9 @@
-#JSON Interceptor for Communique REST Client
+#JSON Interceptor for Communique
 Provides a JSON inteceptor for Communique REST client. You can find the documentation for Communique [here](http://robertmain.github.io/communique).
+
+##Installation
+The easiest way to install is using composer:  
+`composer install communique-interceptor-json`
 
 ###Typical Usage
 In order to be loaded and considered valid, all inteceptors must implement the [\Communique\Interceptor](http://robertmain.github.io/communique/classes/Communique.Interceptor.html) Interface.
