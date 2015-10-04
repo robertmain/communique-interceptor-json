@@ -38,4 +38,11 @@ class JSONTest extends PHPUnit_Framework_TestCase{
     	PHPUnit_Framework_TestCase::assertJsonStringEqualsJsonString('{"request": "payload"}', $processed_request->payload);
     	PHPUnit_Framework_TestCase::assertEquals($request, $processed_request);
     }
+
+
+    public function test_response(){
+    	$response = new \Communique\RESTClientResponse(200, '{"response": "payload"}');
+    	$processed_response = $this->JSON->response($response);
+    	PHPUnit_Framework_TestCase::assertEquals(array('response' => 'payload'), $processed_response->payload);
+    }
 }
