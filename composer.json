@@ -13,7 +13,7 @@
     ],
     "autoload":{
         "psr-4": {
-            "Communique\\Interceptors\\": ["src"]
+            "Communique\\Interceptors\\JSON\\": ["src"]
         }
     },
     "minimum-stability": "stable",
