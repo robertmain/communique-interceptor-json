@@ -33,7 +33,7 @@ class JSON implements \Communique\Interceptor{
 		$req->headers['Accept'] = 'application/json';
 		if(in_array($req->method, array('PUT', 'POST'))){
 			$req->headers['Content-Type'] = 'application/json';
-			$req->payload = json_encode($req->payload);
+			$req->payload = $this->encode($req->payload);
 		}
 		return $req;
 	}
@@ -49,7 +49,8 @@ class JSON implements \Communique\Interceptor{
 	 * @throws \Communique\Interceptors\JSONParseException Thrown to indicate an error parsing the JSON recieved
 	 */
 	public function response(\Communique\RESTClientResponse $res){
-		$res->payload = json_decode($res->payload, true);
+		$res->payload = $this->decode($res->payload);
+		// @todo mock out this function
 		switch(json_last_error()){
 			case JSON_ERROR_DEPTH:
 				throw new \Communique\Interceptors\JSON\JSONParseException('The maximum stack depth has been exceeded');
@@ -85,5 +86,23 @@ class JSON implements \Communique\Interceptor{
 				return $res;
 			break;
 		}
+	}
+
+	/**
+	 * JSON Encode a given value
+	 * @param  mixed $value The value you wish to JSON Encode
+	 * @return string A JSON encoded version of `$value`
+	 */
+	public function encode($value){
+		return json_encode($value);
+	}
+
+	/**
+	 * JSON Decode a given value
+	 * @param  string $value The JSON string you wish to decode
+	 * @return mixed The decoded value of `$value`
+	 */
+	public function decode($value){
+		return json_decode($value, true);
 	}
 }

@@ -46,8 +46,14 @@ class JSONTest extends PHPUnit_Framework_TestCase{
     	PHPUnit_Framework_TestCase::assertEquals(array('response' => 'payload'), $processed_response->payload);
     }
 
-    public function test_error_state_mismatch_response(){    	
-    	PHPUnit_Framework_TestCase::setExpectedException('\Communique\Interceptors\JSON\JSONParseException', 'Invalid or malformed JSON');
+    public function test_error_depth(){
+    	PHPUnit_Framework_TestCase::setExpectedException('\Communique\Interceptors\JSON\JSONParseException', 'The maximum stack depth has been exceeded');
+        $response = new \Communique\RESTClientResponse(200, '{"example": ["example": ["example": "example"]]}');
+        $this->JSON->response($response);
+    }
+
+    public function test_error_state_mismatch_response(){       
+        PHPUnit_Framework_TestCase::setExpectedException('\Communique\Interceptors\JSON\JSONParseException', 'Invalid or malformed JSON');
     	$response = new \Communique\RESTClientResponse(200, 'this is not json');
     	$this->JSON->response($response);
     }
